@@ -235,9 +235,9 @@ function BranchShape({
   const actualId = node.id.endsWith('-merge') ? node.id.slice(0, -6) : node.id;
   const stroke = strokeFor(actualId, selectedId, errorIds);
   const isDouble = node.branchType === 'simultaneous';
-  const lineStrokeWidth = node.branchType === 'alternative' ? 5 : 2;
-  const y1 = node.rect.y + (isDouble ? 2 : node.rect.height / 2);
-  const y2 = isDouble ? node.rect.y + node.rect.height - 2 : y1;
+  const lineStrokeWidth = node.branchType === 'alternative' ? 5 : 3;
+  const y1 = node.rect.y + (isDouble ? 5 : node.rect.height / 2);
+  const y2 = isDouble ? node.rect.y + node.rect.height - 5 : y1;
 
   return (
     <g
@@ -514,14 +514,14 @@ export function renderDiagramToSvgString(
       );
     } else {
       const isDouble = node.branchType === 'simultaneous';
-      const strokeWidth = node.branchType === 'alternative' ? 5 : 2;
-      const y1 = node.rect.y + (isDouble ? 2 : node.rect.height / 2);
+      const strokeWidth = node.branchType === 'alternative' ? 5 : 3;
+      const y1 = node.rect.y + (isDouble ? 5 : node.rect.height / 2);
       parts.push(`<g class="sfc-branch" data-id="${node.id}">`);
       parts.push(
         `<line x1="${node.rect.x}" y1="${y1}" x2="${node.rect.x + node.rect.width}" y2="${y1}" stroke="#1f2937" stroke-width="${strokeWidth}"/>`,
       );
       if (isDouble) {
-        const y2 = node.rect.y + node.rect.height - 2;
+        const y2 = node.rect.y + node.rect.height - 5;
         parts.push(
           `<line x1="${node.rect.x}" y1="${y2}" x2="${node.rect.x + node.rect.width}" y2="${y2}" stroke="#1f2937" stroke-width="${strokeWidth}"/>`,
         );

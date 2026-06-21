@@ -34,4 +34,18 @@ describe('layoutDiagram', () => {
     expect(mergeBranch?.kind).toBe('branch');
     expect(mergeBranch?.branchType).toBe('alternative');
   });
+
+  it('does not create an extra merge edge for branches and keeps edges orthogonal', () => {
+    const layout = layoutDiagram(alternative as SfcDiagram);
+    const mergeEdge = layout.edges.find((edge) => edge.id.startsWith('edge-branch-merge-'));
+    expect(mergeEdge).toBeUndefined();
+
+    for (const edge of layout.edges) {
+      for (let i = 1; i < edge.points.length; i += 1) {
+        const prev = edge.points[i - 1];
+        const curr = edge.points[i];
+        expect(prev.x === curr.x || prev.y === curr.y).toBe(true);
+      }
+    }
+  });
 });
