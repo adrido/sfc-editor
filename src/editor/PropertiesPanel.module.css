@@ -1,0 +1,46 @@
+.panel {
+  width: 280px;
+  border-left: 1px solid #e5e7eb;
+  padding: 12px;
+  background: #fafafa;
+  overflow-y: auto;
+}
+
+.panel h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.field textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.empty {
+  font-size: 13px;
+  color: #6b7280;
+}

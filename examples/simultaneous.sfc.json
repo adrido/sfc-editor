@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "title": "SimultaneousBranch",
+  "root": [
+    {
+      "id": "step-init",
+      "kind": "step",
+      "name": "Init",
+      "isInitial": true,
+      "actions": []
+    },
+    {
+      "id": "transition-1",
+      "kind": "transition",
+      "condition": "StartBatch"
+    },
+    {
+      "id": "branch-sim",
+      "kind": "branch",
+      "branchType": "simultaneous",
+      "role": "divergence",
+      "label": "ParallelOps",
+      "lanes": [
+        [
+          {
+            "id": "step-heat",
+            "kind": "step",
+            "name": "Heat",
+            "actions": [
+              {
+                "id": "action-heat",
+                "name": "HeaterOn",
+                "qualifier": "N"
+              }
+            ]
+          },
+          {
+            "id": "transition-heat-done",
+            "kind": "transition",
+            "condition": "Heat.T >= T#120s"
+          }
+        ],
+        [
+          {
+            "id": "step-mix",
+            "kind": "step",
+            "name": "Mix",
+            "actions": [
+              {
+                "id": "action-mix",
+                "name": "MixerOn",
+                "qualifier": "N"
+              }
+            ]
+          },
+          {
+            "id": "transition-mix-done",
+            "kind": "transition",
+            "condition": "Mix.T >= T#60s"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "transition-merge",
+      "kind": "transition",
+      "condition": "TRUE"
+    },
+    {
+      "id": "step-complete",
+      "kind": "step",
+      "name": "Complete",
+      "actions": []
+    }
+  ]
+}

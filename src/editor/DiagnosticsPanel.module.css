@@ -1,0 +1,43 @@
+.panel {
+  border-top: 1px solid #e5e7eb;
+  max-height: 180px;
+  overflow-y: auto;
+  background: #fff7ed;
+}
+
+.panelHeader {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9a3412;
+  border-bottom: 1px solid #fed7aa;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ffedd5;
+  font-size: 12px;
+  color: #7c2d12;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #ffedd5;
+}
+
+.itemError {
+  composes: item;
+  color: #991b1b;
+}
+
+.ok {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #166534;
+}

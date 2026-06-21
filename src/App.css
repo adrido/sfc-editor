@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: #111827;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}

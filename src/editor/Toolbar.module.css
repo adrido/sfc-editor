@@ -1,0 +1,58 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  flex-wrap: wrap;
+}
+
+.toolbarGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbarTitle {
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 12px;
+  color: #111827;
+}
+
+.toolbar button,
+.toolbar label.fileButton {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.toolbar button.fixedWidth {
+  min-width: 130px;
+  width: 130px;
+  white-space: nowrap;
+}
+
+.toolbar button:hover,
+.toolbar label.fileButton:hover {
+  background: #f3f4f6;
+}
+
+.toolbar button.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.toolbar button.primary:hover {
+  background: #1d4ed8;
+}
+
+.toolbar input[type='file'] {
+  display: none;
+}

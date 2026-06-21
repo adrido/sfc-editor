@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "title": "LinearSequence",
+  "root": [
+    {
+      "id": "step-init",
+      "kind": "step",
+      "name": "Init",
+      "isInitial": true,
+      "actions": [
+        {
+          "id": "action-1",
+          "name": "StartMotor",
+          "qualifier": "P1"
+        }
+      ]
+    },
+    {
+      "id": "transition-1",
+      "kind": "transition",
+      "condition": "StartButton AND NOT EmergencyStop"
+    },
+    {
+      "id": "step-run",
+      "kind": "step",
+      "name": "Run",
+      "actions": [
+        {
+          "id": "action-2",
+          "name": "MotorOn",
+          "qualifier": "N"
+        }
+      ]
+    },
+    {
+      "id": "transition-2",
+      "kind": "transition",
+      "condition": "StopButton OR Run.T >= T#30s"
+    },
+    {
+      "id": "step-stop",
+      "kind": "step",
+      "name": "Stop",
+      "actions": [
+        {
+          "id": "action-3",
+          "name": "MotorOff",
+          "qualifier": "N"
+        }
+      ]
+    }
+  ]
+}

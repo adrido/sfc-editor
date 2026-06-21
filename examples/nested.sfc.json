@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "title": "NestedBranches",
+  "root": [
+    {
+      "id": "step-init",
+      "kind": "step",
+      "name": "Init",
+      "isInitial": true,
+      "actions": []
+    },
+    {
+      "id": "transition-1",
+      "kind": "transition",
+      "condition": "TRUE"
+    },
+    {
+      "id": "branch-sim",
+      "kind": "branch",
+      "branchType": "simultaneous",
+      "role": "divergence",
+      "lanes": [
+        [
+          {
+            "id": "step-lane1",
+            "kind": "step",
+            "name": "Lane1",
+            "actions": []
+          },
+          {
+            "id": "transition-l1",
+            "kind": "transition",
+            "condition": "Ready1"
+          },
+          {
+            "id": "branch-alt-nested",
+            "kind": "branch",
+            "branchType": "alternative",
+            "role": "divergence",
+            "lanes": [
+              [
+                {
+                  "id": "transition-a1",
+                  "kind": "transition",
+                  "condition": "OptA"
+                },
+                {
+                  "id": "step-a",
+                  "kind": "step",
+                  "name": "PathA",
+                  "actions": []
+                }
+              ],
+              [
+                {
+                  "id": "transition-b1",
+                  "kind": "transition",
+                  "condition": "OptB"
+                },
+                {
+                  "id": "step-b",
+                  "kind": "step",
+                  "name": "PathB",
+                  "actions": []
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "id": "step-lane2",
+            "kind": "step",
+            "name": "Lane2",
+            "actions": []
+          },
+          {
+            "id": "transition-l2",
+            "kind": "transition",
+            "condition": "Ready2"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "transition-end",
+      "kind": "transition",
+      "condition": "AllDone"
+    },
+    {
+      "id": "step-end",
+      "kind": "step",
+      "name": "End",
+      "actions": []
+    }
+  ]
+}

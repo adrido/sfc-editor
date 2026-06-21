@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "title": "AlternativeBranch",
+  "root": [
+    {
+      "id": "step-init",
+      "kind": "step",
+      "name": "Init",
+      "isInitial": true,
+      "actions": []
+    },
+    {
+      "id": "transition-1",
+      "kind": "transition",
+      "condition": "TRUE"
+    },
+    {
+      "id": "branch-alt",
+      "kind": "branch",
+      "branchType": "alternative",
+      "role": "divergence",
+      "label": "SelectPath",
+      "lanes": [
+        [
+          {
+            "id": "transition-a",
+            "kind": "transition",
+            "condition": "Mode = AUTO"
+          },
+          {
+            "id": "step-auto",
+            "kind": "step",
+            "name": "AutoRun",
+            "actions": []
+          }
+        ],
+        [
+          {
+            "id": "transition-m",
+            "kind": "transition",
+            "condition": "Mode = MANUAL"
+          },
+          {
+            "id": "step-manual",
+            "kind": "step",
+            "name": "ManualRun",
+            "actions": []
+          }
+        ]
+      ]
+    },
+    {
+      "id": "transition-end",
+      "kind": "transition",
+      "condition": "Done"
+    },
+    {
+      "id": "step-end",
+      "kind": "step",
+      "name": "End",
+      "actions": []
+    }
+  ]
+}
