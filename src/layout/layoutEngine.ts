@@ -252,8 +252,25 @@ function layoutBranch(branch: SfcBranch, centerX: number, startY: number): LaneL
     points: laneLayouts.map((lane) => ({ x: lane.exit.x, y: exitY })).concat([{ x: centerX, y: exitY + VERTICAL_GAP / 2 }]),
   });
 
+  // For alternative and simultaneous branches, create an explicit merge branch
+  // node so the renderer can draw the end bar with the same style as the start.
+  const mergeBarHeight = branch.branchType === 'simultaneous' ? BRANCH_BAR_HEIGHT * 2 + 2 : BRANCH_BAR_HEIGHT;
+  const mergeRect: LayoutRect = {
+    x: centerX - barWidth / 2,
+    y: exitY - mergeBarHeight / 2,
+    width: barWidth,
+    height: mergeBarHeight,
+  };
+  const mergeNode: LayoutNode = {
+    id: `${branch.id}-merge`,
+    kind: 'branch',
+    rect: mergeRect,
+    branchType: branch.branchType,
+    role: branch.role,
+  };
+
   return {
-    nodes,
+    nodes: [...nodes, mergeNode],
     actions,
     edges,
     width: barWidth,

@@ -229,7 +229,11 @@ function BranchShape({
   interactive?: boolean;
   onSelect?: SvgRendererProps['onSelect'];
 }) {
-  const stroke = strokeFor(node.id, selectedId, errorIds);
+  // If this is a generated merge node (id ends with "-merge"), map
+  // interactions back to the original branch id so selection/interaction
+  // is handled on the branch start node.
+  const actualId = node.id.endsWith('-merge') ? node.id.slice(0, -6) : node.id;
+  const stroke = strokeFor(actualId, selectedId, errorIds);
   const isDouble = node.branchType === 'simultaneous';
   const y1 = node.rect.y + (isDouble ? 2 : node.rect.height / 2);
   const y2 = isDouble ? node.rect.y + node.rect.height - 2 : y1;
@@ -237,12 +241,12 @@ function BranchShape({
   return (
     <g
       className="sfc-branch"
-      data-id={node.id}
+      data-id={actualId}
       onClick={
         interactive
           ? (event) => {
               event.stopPropagation();
-              onSelect?.(node.id, 'branch');
+              onSelect?.(actualId, 'branch');
             }
           : undefined
       }
@@ -510,6 +514,7 @@ export function renderDiagramToSvgString(
     } else {
       const isDouble = node.branchType === 'simultaneous';
       const y1 = node.rect.y + (isDouble ? 2 : node.rect.height / 2);
+      parts.push(`<g class="sfc-branch" data-id="${node.id}">`);
       parts.push(
         `<line x1="${node.rect.x}" y1="${y1}" x2="${node.rect.x + node.rect.width}" y2="${y1}" stroke="#1f2937" stroke-width="2"/>`,
       );
@@ -524,6 +529,7 @@ export function renderDiagramToSvgString(
           `<text x="${node.rect.x + node.rect.width + 8}" y="${node.rect.y + node.rect.height / 2 + 4}" font-size="11" fill="#6b7280" font-family="ui-monospace, monospace">${escapeXml(node.label)}</text>`,
         );
       }
+      parts.push(`</g>`);
     }
   }
 
