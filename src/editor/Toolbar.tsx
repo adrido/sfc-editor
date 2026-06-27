@@ -22,6 +22,9 @@ export function Toolbar() {
   return (
     <>
       <header className={styles.toolbar}>
+      <div className={styles.toolbarIcons}>
+        <img src="favicon.svg" alt="SFC Editor" width="32" height="32" className={styles.toolbarIcon} />
+      </div>
       <div className={styles.toolbarTitle}>SFC Editor</div>
 
       <div className={styles.toolbarGroup}>

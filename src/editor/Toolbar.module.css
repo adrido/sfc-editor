@@ -20,6 +20,11 @@
   margin-right: 12px;
   color: #111827;
 }
+.toolbarIcons {
+  width: 32px;
+  height: 32px;
+  display: flex;
+}
 
 .toolbar button,
 .toolbar label.fileButton {
