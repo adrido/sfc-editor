@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import faviconUrl from '/favicon.svg';
 import { useDiagramStore } from '../store/diagramStore';
 import { exportPng } from '../export/exportPng';
 import { exportSvg } from '../export/exportSvg';
@@ -23,7 +24,7 @@ export function Toolbar() {
     <>
       <header className={styles.toolbar}>
       <div className={styles.toolbarIcons}>
-        <img src="favicon.svg" alt="SFC Editor" width="32" height="32" className={styles.toolbarIcon} />
+        <img src={faviconUrl} alt="SFC Editor" width="32" height="32" className={styles.toolbarIcon} />
       </div>
       <div className={styles.toolbarTitle}>SFC Editor</div>
 
