@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDiagramStore } from '../store/diagramStore';
 import { exportPng } from '../export/exportPng';
 import { exportSvg } from '../export/exportSvg';
 import { loadDiagramJsonFromFile, saveDiagramJson } from '../export/exportFiles';
+import { AboutModal } from './AboutModal';
 import styles from './Toolbar.module.css';
 
 export function Toolbar() {
@@ -16,9 +17,11 @@ export function Toolbar() {
   const runValidation = useDiagramStore((state) => state.runValidation);
   const actionsCollapsed = useDiagramStore((state) => state.actionsCollapsed);
   const toggleActionsCollapsed = useDiagramStore((state) => state.toggleActionsCollapsed);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   return (
-    <header className={styles.toolbar}>
+    <>
+      <header className={styles.toolbar}>
       <div className={styles.toolbarTitle}>SFC Editor</div>
 
       <div className={styles.toolbarGroup}>
@@ -82,7 +85,13 @@ export function Toolbar() {
         >
           Export PNG
         </button>
+        <button type="button" onClick={() => setAboutOpen(true)}>
+          About
+        </button>
       </div>
     </header>
+
+      <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />
+    </>
   );
 }
